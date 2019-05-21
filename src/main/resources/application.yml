@@ -1,6 +1,11 @@
 server:
   servlet:
     context-path: /my-docs
+    multipart:
+      enabled: true
+      file-size-threshold: 512KB
+      max-file-size: 5MB
+      max-request-size: 5MB
 
 google:
   secret:
