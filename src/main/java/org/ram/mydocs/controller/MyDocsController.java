@@ -21,7 +21,7 @@ public class MyDocsController {
     public FileResource uploadFile(@RequestParam("file") MultipartFile file,
                                    HttpServletRequest request) throws IOException {
         String username = request.getHeader("x-username");
-        return myDocsService.uploadFile(username, file);
+        return myDocsService.uploadFile(username, null, file);
     }
 
     @GetMapping("/files")
@@ -42,5 +42,13 @@ public class MyDocsController {
                                      HttpServletRequest request) throws IOException {
         String username = request.getHeader("x-username");
         return myDocsService.createFolder(username, file);
+    }
+
+    @PostMapping("folders/{id}/files")
+    public FileResource uploadFileToFolder(@RequestParam("file") MultipartFile file,
+                                           @PathVariable("id") String folderId,
+                                           HttpServletRequest request) throws IOException {
+        String username = request.getHeader("x-username");
+        return myDocsService.uploadFile(username, folderId, file);
     }
 }
