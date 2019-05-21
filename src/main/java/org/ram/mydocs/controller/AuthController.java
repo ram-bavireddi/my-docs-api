@@ -1,7 +1,7 @@
 package org.ram.mydocs.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.ram.mydocs.resource.User;
+import org.ram.mydocs.resource.UserResource;
 import org.ram.mydocs.service.DriveService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +20,7 @@ public class AuthController {
     private final DriveService driveService;
 
     @PostMapping("/google/signin")
-    public User doGoogleSignin(@RequestBody User user) {
+    public UserResource doGoogleSignin(@RequestBody UserResource user) {
         String authorizationUrl = driveService.createAuthorizationUrl(user.getEmail());
         user.setAuthorizationUrl(authorizationUrl);
         return user;

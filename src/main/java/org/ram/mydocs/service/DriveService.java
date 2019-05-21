@@ -56,7 +56,12 @@ public class DriveService {
 
     public boolean isUserAuthenticated(String username) throws IOException {
         Credential credential = flow.loadCredential(username);
-        return credential != null && credential.refreshToken();
+        return credential != null && credential.getExpirationTimeMilliseconds() > System.currentTimeMillis();
+    }
+
+    public String getAccessToken(String username) throws IOException {
+        Credential credential = flow.loadCredential(username);
+        return credential.getAccessToken();
     }
 
     public String storeCredential(String code, String username) throws IOException {

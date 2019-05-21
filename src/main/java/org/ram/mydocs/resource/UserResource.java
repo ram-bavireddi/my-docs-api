@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class User {
+public class UserResource {
     private String email;
     private String authorizationUrl;
 }
